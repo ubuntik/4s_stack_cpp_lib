@@ -8,6 +8,7 @@
 
 using namespace std;
 
+template <class T>
 class stack
 {
 public:
@@ -21,15 +22,15 @@ public:
 	stack(int size);
 	stack(const stack &s);
 	~stack();
-	int pop();
-	void push(int val);
+	T pop();
+	void push(T val);
 	stack& operator=(const stack &s);
 
-	int *data() const { return m_data; };
+	T *data() const { return m_data; };
 	int size() const { return m_size; };
 	int current_size() const { return m_current_size; };
 
-	friend ostream &operator<<(ostream &output, const stack &s) {
+	friend ostream &operator<<(ostream &output, const stack<T> &s) {
 		output << "Stack: size " << s.size();
 		output << " current size " << s.current_size() << endl;
 		output << "data: " << (void*)s.data() << " [ ";
@@ -40,9 +41,10 @@ public:
 	};
 
 private:
-	int *m_data;
+	T *m_data;
 	int m_size;
 	int m_current_size;
 };
+
 
 #endif  // _STACK_H_
